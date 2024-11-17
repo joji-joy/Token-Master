@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+input {
+  font-family: "Poppins", sans-serif;
+}
+body{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0rem 5rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+/* form.sign-up-form {
+  opacity: 0;
+  z-index: 1;
+} */
+
+.squad{
+  height: 100dvh;
+  width: 70dvw;
+  position: absolute;
+  left: -20dvw;
+  background: orangered;
+  border-radius: 4dvw;
+}
+
+.joephoto{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100dvh;
+  width: 50dvw;
+}
+.joephoto2{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100dvh;
+  width: 50dvw;
+  transform: translateX(50dvw);
+}
+.joephoto img{
+  height: 55dvh;
+  width: fit-content;
+}
+.joephoto2 img{
+  height: 58dvh;
+  width: fit-content;
+}
+.fa-phone{
+  transform: rotate(90deg);
+}
+.formcont{
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50dvw;
+  height: 100dvh;
+  z-index: -2;
+}
+.formcont2{
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50dvw;
+  height: 100dvh;
+  z-index: -2;
+}
+
+form.sign-in-form {
+  z-index: 2;
+}
+
+.title {
+  font-family: 'Nova Square', sans-serif;
+  font-size: 2.2rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  max-width: 380px;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  height: 55px;
+  border-radius: 55px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  position: relative;
+}
+.pass-ins {
+  display: none;
+  max-width: 300px;
+  text-align: justify;
+  font-family: "poppins" , sans-serif;
+  font-size: 1em;
+}
+.acc-ins {
+  max-width: 300px;
+  text-align: center;
+  font-family: "poppins" , sans-serif;
+  font-size: 1em;
+}
+
+
+.input-field i {
+  text-align: center;
+  line-height: 55px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.1rem;
+}
+
+.input-field input {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.input-field input::placeholder {
+  color: #aaa;
+  font-weight: 500;
+}
+.input-field:has(input:invalid){
+  border: 1px solid rgb(255, 55, 55);
+
+}
+
+
+
+.btn {
+  width: 150px;
+  background-color: #5995fd;
+  border: none;
+  outline: none;
+  height: 49px;
+  border-radius: 49px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  background-color: #4d84e2;
+}
+
+.btn.transparent {
+  margin: 0;
+  background: none;
+  border: 2px solid #fff;
+  width: 130px;
+  height: 41px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.content{
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+/* ANIMATION */
+
+.squad.squadmov{
+  transform: translateX(70dvw);
+}
+.squad.transition{
+  transition: 1s ease-in-out;
+}
+.joephoto.photomov{
+  transform: translateX(-50dvw);
+}
+.joephoto.transition{
+  transition: 1s ease-in-out;
+}
+.joephoto2.photomov{
+  transform: translateX(0dvw);
+}
+.joephoto2.transition{
+  transition: 1s ease-in-out;
+}
+
+.formcont2.index , .formcont1.index{
+  z-index: 11;
+}
+
+
+/* .container.sign-up-mode form.sign-up-form {
+  opacity: 1;
+  z-index: 2;
+}
+
+.container.sign-up-mode form.sign-in-form {
+  opacity: 0;
+  z-index: 1;
+} */
+
+
+@media (max-width: 870px) {
+  .squad{
+    top: 73dvh;
+    left: 0dvh;
+    height: 50dvh;
+    width: 100dvw;
+  }
+  .joephoto img , .joephoto2 img{
+    display: none; 
+  }
+  .joephoto , .joephoto2{
+    height: fit-content;
+    width: fit-content;
+  }
+  .joephoto{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .joephoto.photomov{
+    top: 110%;
+    left: 84%;
+  }
+  .formcont{
+    top: 36%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 11;
+    width: 100%;
+    height: 50%;
+  }
+  .formcont.formmov{
+    top: -30%;
+  }
+  .formcont.transition{
+    transition: 1s ease-in-out;
+  }
+  .formcont2{
+    top: 120%;
+    width: 100%;
+    height: fit-content;
+  }
+  .formcont2.formmov{
+    top: 29%;
+  }
+  .formcont2.transition{
+    transition: 1s ease-in-out;
+  }
+  .squad.squadmov{
+    transform: translateY(-97dvh);
+  }
+  .joephoto2{
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .joephoto2.photomov{
+    position: absolute;
+    top: 13%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  /* form.sign-up-form {
+    width: fit-content;
+  } */
+}
+
+@media (max-width: 570px) {
+  .content{
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .btn.transparent {
+    width: 110px;
+    height: 38px;
+    font-size: 0.75rem;
+  }
+  form{
+    padding: 0rem 1rem;
+  }
+}
