@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Token Call - Token Master</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/token1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nova+Square&family=PT+Mono&family=Poppins:wght@300&family=Quicksand:wght@500&family=Roboto" rel="stylesheet">
+</head>
+<body>
+     <nav id="desktop-nav">
+        <div class="logo">
+            <img src="../static/images/joe3.png" alt="logo" width="140" height="100">
+        </div>
+        <div>
+            <ul class="nav-links">
+                <li><a href="/generate">Create</a></li>
+                <li><a href="/list">List</a></li>
+                <li><a href="/search">Edit</a></li>
+                <li><a href="#" id="current">Call</a></li>
+                <li><a href="/page2" target="_blank">Display</a></li>
+                <li><a href="/page3">Track</a></li>
+                <li><a href="/logout" id="logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav id="hamburger-nav">
+        <div class="logo">
+            <img src="../static/images/joe3.png" alt="logo" width="130" height="90">
+        </div>
+        <div class="hamburger-menu">
+          <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="menu-links">
+            <li><a href="/generate" onclick="toggleMenu()">Create</a></li>
+            <li><a href="/list" onclick="toggleMenu()">List</a></li>
+            <li><a href="/search" onclick="toggleMenu()">Edit</a></li>
+            <li><a onclick="toggleMenu()" href="#" id="current">Call</a></li>
+            <li><a onclick="toggleMenu()" href="/page2" target="_blank">Display</a></li>
+            <li><a onclick="toggleMenu()" href="/page3">Track</a></li>
+            <li><a onclick="toggleMenu()" href="/logout" id="logout">Logout</a></li>
+          </div>
+        </div>
+      </nav>
+<div id="joe1">
+    <p id="head">Token Number</p>
+    <p><span id="tokenValue">00</span></p>
+    <div id="joe2">
+    <div id="but1">
+    <button id="decrementButton"><span class="next1"></span>Prev</button>
+    <button id="incrementButton">Next<span class="prev"></span></button>
+    </div>
+    <!-- <input type="number" id="jumid" placeholder="Jump to">
+    <button id="jumpbut" onclick="jump()">jump</button> -->
+</div>
+</div>
+
+    <script>
+        function jump(){
+            var val = document.getElementById("jumid").value;
+            document.getElementById("tokenValue").value= val;
+        }
+        function updateTokenValue() {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get_token', true);
+
+            // Set up an event handler for when the request is complete
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    document.getElementById('tokenValue').textContent = data.token;
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        }
+
+        function incrementToken() {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/increment_token', true);
+
+            // Set up an event handler for when the request is complete
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    updateTokenValue(); // Update the token value after incrementing
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        }
+
+
+        function jumpToken() {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/jump_token', true);
+
+            // Set up an event handler for when the request is complete
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    updateTokenValue(); // Update the token value after incrementing
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        }
+
+        function decrementToken() {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/decrement_token', true);
+
+            // Set up an event handler for when the request is complete
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    updateTokenValue(); // Update the token value after decrementing
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        }
+
+        // Call the updateTokenValue function initially
+        updateTokenValue();
+
+        // Periodically update the token value every few seconds (e.g., every 5 seconds)
+        setInterval(updateTokenValue, 1000);
+
+        // Set up the click event for the "Increment Token" button
+        document.getElementById('incrementButton').addEventListener('click', function() {
+            incrementToken();
+        });
+
+        // Set up the click event for the "Decrement Token" button
+        document.getElementById('decrementButton').addEventListener('click', function() {
+            decrementToken();
+        });
+    </script>
+    <script>
+            function toggleMenu() {
+        const menu = document.querySelector(".menu-links");
+        const icon = document.querySelector(".hamburger-icon");
+        menu.classList.toggle("open");
+        icon.classList.toggle("open");
+        }
+    </script>
+</body>
+</html>

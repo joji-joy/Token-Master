@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Token Search - Token Master</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/token1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nova+Square&family=PT+Mono&family=Poppins:wght@300&family=Quicksand:wght@500" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap&family=Roboto:wght@1,300&display=swap" rel="stylesheet">
+    <style>
+        .material-symbols-outlined{
+            color: rgb(65, 65, 65);
+        }
+    </style>
+</head>
+<body>
+     <nav id="desktop-nav">
+        <div class="logo">
+            <img src="../static/images/joe3.png" alt="logo" width="140" height="100">
+        </div>
+    <div>
+        <ul class="nav-links">
+            <li><a href="/generate">Create</a></li>
+            <li><a href="/list">List</a></li>
+            <li><a href="/search">Edit</a></li>
+            <li><a href="/page1">Call</a></li>
+            <li><a href="/page2" target="_blank">Display</a></li>
+            <li><a href="/page3">Track</a></li>
+            <li><a href="/logout" id="logout">Logout</a></li>
+        </ul>
+    </div>
+    </nav>
+    <nav id="hamburger-nav">
+        <div class="logo">
+            <img src="../static/images/joe3.png" alt="logo" width="130" height="90">
+        </div>
+        <div class="hamburger-menu">
+          <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="menu-links">
+            <li><a href="/generate" onclick="toggleMenu()">Create</a></li>
+            <li><a href="/list" onclick="toggleMenu()">List</a></li>
+            <li><a href="/search" onclick="toggleMenu()">Edit</a></li>
+            <li><a onclick="toggleMenu()" href="/page1">Call</a></li>
+            <li><a onclick="toggleMenu()" href="/page2" target="_blank">Display</a></li>
+            <li><a onclick="toggleMenu()" href="/page3">Track</a></li>
+            <li><a onclick="toggleMenu()" href="/logout" id="logout">Logout</a></li>
+          </div>
+        </div>
+      </nav>
+
+    <script>
+            function toggleMenu() {
+        const menu = document.querySelector(".menu-links");
+        const icon = document.querySelector(".hamburger-icon");
+        menu.classList.toggle("open");
+        icon.classList.toggle("open");
+        }
+    </script>
+<div class="listen2">
+        <form action="/find" method="POST" class="form">
+            <p class="title">Search Token</p>
+<br>
+            <p id="listdate">Please select the date</p>
+            <label>
+                <input required="" placeholder="mm/dd/yyyy" name="date" type="date" class="input2" id="dateInput">
+            </label> 
+            <p id="listdate">Search by :</p>
+            <label for="select">
+            <select name="selec" id="selec" class="input" style="width: 108.5%;   padding: 13px 20px 13px 10px;">
+                <option value="Token">Token Number</option>
+                <option value="Phone">Phone</option>
+                <option value="Email">Email</option>
+                <option value="Name">Full Name</option>
+            </select>
+            </label>
+            <label>
+                <input required="" placeholder="Enter search value" name="selection" type="text" class="input" style="padding: 13px 10px 13px 10px;">
+            </label> 
+            <button class="submit" style="width: 108.5%;">Find</button>
+        </form>
+        {% if invoke_yes %}
+        <style>
+            #nodata2{
+                display: none;
+            }
+        </style>
+        <div id="table">
+            <div id="najo">
+                <p id="nala">Name</p>
+                <p id="nama">{{ data.Name }}</p>
+            </div>
+            <div id="najo">
+                <p id="nala">Phone</p>
+                <p id="nama">{{ data.Phone }}</p>
+            </div>
+            <div id="najo">
+                <p id="nala">Email</p>
+                <p id="nama">{{ data.Email }}</p>
+            </div>
+            <div id="najo">
+                <p id="nala">Token Number</p>
+                <p id="nama">{{ data.Token }}</p>
+            </div>
+            <div id="jelem">
+                <div>
+                    <button onclick="alcreate()" id="edit">
+                    <img src="../static/images/edit.png" alt="Edit" height="45">
+                    <p>Edit</p>
+                    </button>
+                </div>
+                <div>
+                    <button id="edit" onclick="aldelete()">
+                    <img src="../static/images/delete.png" alt="Edit" height="45">
+                    <p>Delete</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="newclosesect">
+            <div id="blurback"></div>
+            <div class="center-wrapper">
+                <div id="AlreadyExist2">
+                    <div id="subal2">
+                    <form action="/edit" method="POST" class="form">
+                        <p class="title6">Edit</p>
+                    <label>
+                        <input type="text" disabled class="input" name="eden" value="{{ data.Token }}">
+                        <span style="top: 30px;font-size: 0.7em;font-weight: 600;color: #18d26e;transition: none;">Token Number</span>
+                    </label>
+                    <input type="hidden" class="input" name="edtoken" value="{{ data.Token }}">
+                    <label>
+                        <input type="text" class="input" name="edname" value="{{ data.Name }}">
+                        <span style="transition: none;">Full Name</span>
+                    </label>
+                    <label>
+                        <input type="tel" class="input" name="edphone" value="{{ data.Phone }}">
+                        <span style="transition: none;">Phone</span>
+                    </label>
+                    <label>
+                        <input type="email" class="input" name="edemail" value="{{ data.Email }}">
+                        <span style="transition: none;">Email</span>
+                    </label>
+                    <input type="hidden" name="edtable" value="{{date2}}" >
+                    <button type="submit" class="submit" id="move">Save changes</button>
+                </form>
+                <button id="discard" onclick="discard()">Discard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="closesect">
+            <div id="blurback"></div>
+            <div class="center-wrapper">
+                <div id="AlreadyExist2">
+                    <div id="subal2">
+                    <form action="/delete" method="POST" class="form">
+                        <p class="title6" style="padding-left: 0px;">Delete</p>
+                        <p id="listdate2">Are you sure?</p>
+                        <p id="listdate">This action cannot be undone</p>
+                        <input type="hidden" name="edtoken" value="{{ data.Token }}">
+                        <input type="hidden" name="edname" value="{{ data.Name }}">
+                        <input type="hidden" name="edtable" value="{{date2}}" >
+                    <button type="submit" id="discard" style="color: red;transform: none;">Delete</button>
+                </form>
+                <button id="discard" style="transform: none;" onclick="discard()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    {% endif %}
+
+    <div id="newsuccess">
+        <div id="blurback"></div>
+        <div class="center-wrapper">
+            <div id="AlreadyExist2">
+                <div id="subal2">
+                    <div>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                        <circle class="path circle" fill="none" stroke="#18d26e" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+                        <polyline class="path check" fill="none" stroke="#18d26e" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+                        </svg>
+                    </div>
+                    <p id="listdate2">Successfull</p>
+                    <button class="close"  onclick='document.getElementById("newsuccess").style.display = "none";'>Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="newfail">
+        <div id="blurback"></div>
+        <div class="center-wrapper">
+            <div id="AlreadyExist2">
+                <div id="subal2">
+                    <p id="listdate2">Something went wrong</p>
+                    <button class="close" onclick='document.getElementById("newfail").style.display = "none";'>Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% if invoke_success %}
+<script>
+    function alexist(){
+        document.getElementById("newsuccess").style.display = "block";
+    }
+    window.onload=function(){
+ alexist();
+}
+</script>
+{% endif %}
+
+
+{% if invoke_fail %}
+    <script>
+        function alexist1(){
+            document.getElementById("newfail").style.display = "block";
+        }
+        window.onload=function(){
+     alexist1();
+    }
+    </script>
+{% endif %}
+
+        {% if invoke_empty %}
+        <style>
+            #nodata2{
+                display: none;
+            }
+        </style>
+        <div id="noinfo">
+            <img src="../static/images/nodata.gif" alt="No data found" id="nodata" height="300">
+            <p id="headp" style="position: relative;top: -3em;">No Data Found for {{data1}} - {{data2}} on {{date2}}</p>
+        </div>
+        {% endif %}
+
+        <img src="../static/images/web.gif" alt="No data found" id="nodata2" height="300">
+</div>
+
+
+<script>
+    function alcreate(){
+        document.getElementById("newclosesect").style.display = "block";
+    }
+    function aldelete(){
+        document.getElementById("closesect").style.display = "block";
+    }
+    function discard(){
+        document.getElementById("newclosesect").style.display = "none";
+        document.getElementById("closesect").style.display = "none";
+    }
+    function close(){
+        document.getElementById("newsuccess").style.display = "none";
+        document.getElementById("newfail").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
