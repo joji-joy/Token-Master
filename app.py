@@ -13,12 +13,12 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'joji123'
-app.config['MYSQL_DB'] = 'traffic'
+app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_DB'] = 'token'
  
 mysql = MySQL(app)
 
-app.secret_key = "joe123bhai321"
+app.secret_key = "root123token321"
 app.permanent_session_lifetime = timedelta(minutes=30)
 
 token = 0  # Initialize the token value
